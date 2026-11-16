@@ -1,0 +1,21 @@
+@reference "../../../../app/globals.css";
+
+.card {
+    @apply mx-auto my-8 max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm sm:p-10;
+}
+
+.badge {
+    @apply mx-auto mb-4 inline-flex items-center justify-center rounded-xl bg-red-50 px-3.5 py-1.5 text-sm font-bold text-red-600;
+}
+
+.title {
+    @apply text-3xl font-bold tracking-tight text-slate-900;
+}
+
+.description {
+    @apply mt-2.5 mb-6 text-sm leading-6 text-slate-500;
+}
+
+.backLink {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-700;
+}
