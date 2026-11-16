@@ -1,45 +1,57 @@
-# Manajemen Produk - Tugas 3 Pemrograman Web (Fundamental React)
+# Manajemen Produk — Tugas Pemrograman Web (React, TypeScript, React Router & Tailwind CSS)
 
-Aplikasi web satu halaman (*Single Page Application*) berbasis **React** untuk mengelola daftar produk dan harga dalam satu tempat.
+Aplikasi web **Manajemen Produk** berbasis [anasmcfudy/react-template](https://github.com/anasmcfudy/react-template) menggunakan **React 19, TypeScript, Vite, React Router v7, Tailwind CSS v4, dan Atomic Design**.
 
-## Fitur Utama
-- **Daftar Produk (`ProductList` & `ProductCard`)**: Menampilkan kartu produk (ID, Nama Produk, dan Harga dalam format Rupiah) dari data *array of objects* yang dikirim melalui `props` antar komponen.
-- **Pencarian Produk (`SearchBar`)**: Menyaring daftar produk secara *real-time* berdasarkan kata kunci nama produk serta menampilkan jumlah produk yang ditampilkan.
-- **Pop-up Tambah Produk (`ProductFormModal`)**: Menambahkan produk baru dengan validasi nama produk dan harga harus lebih dari 0.
-- **Pop-up Edit Produk (`ProductFormModal`)**: Memperbarui nama dan harga produk yang dipilih.
-- **Pop-up Konfirmasi Hapus Produk (`DeleteConfirmModal`)**: Menampilkan dialog konfirmasi beserta ringkasan produk sebelum menghapus produk dari daftar.
+## Fitur & Halaman
 
-## Cara Menjalankan Proyek
+1. **Halaman Daftar Produk (`/products`)**
+   - Menampilkan daftar produk awal (`Pulpen`, `Buku Tulis`, `Spidol`, `Penggaris`, `Penghapus`).
+   - Mendukung operasi CRUD lengkap: **Tambah Produk**, **Lihat Detail**, **Edit Produk**, dan **Hapus Produk** menggunakan modal *pop-up*.
+   - Pencarian produk secara *real-time* berdasarkan nama produk.
+   - Mendukung perubahan tata letak tampilan **Grid** (3 kolom) maupun **List** (baris memanjang) sesuai pengaturan pada halaman Settings.
+2. **Halaman Detail Produk (`/products/:id`)**
+   - Menampilkan detail informasi produk sesuai parameter `:id` pada URL.
+   - Dilengkapi tombol tautan (`Link`) **Kembali ke Daftar Produk** (`/products`) serta aksi **Edit Produk** dan **Hapus Produk**.
+   - Menampilkan pesan jelas apabila ID produk tidak ditemukan.
+3. **Halaman Pengaturan Tampilan (`/settings`)**
+   - Mengubah mode tampilan daftar produk antara **Tampilan Grid** dan **Tampilan List** yang tersimpan pada *shared state* (`ProductProvider`).
+4. **Halaman 404 (`*`)**
+   - Menampilkan pesan kesalahan **Error 404 — Halaman Tidak Ditemukan** secara jelas beserta tautan (`Link`) kembali ke `/products`.
+
+## Perintah Menjalankan Proyek
 
 ```bash
 npm install
 npm run dev
+npm run typecheck
+npm run lint
+npm test
+npm run build
 ```
 
 ## Bukti Pengujian
 
 | Skenario | Hasil yang Diharapkan | Hasil Aktual |
 |---|---|---|
-| Membuka halaman daftar produk | Daftar 5 produk awal ditampilkan beserta informasi ID, nama, dan harga | Sesuai |
-| Mencari produk pada kolom pencarian | Daftar produk tersaring sesuai kata kunci nama produk | Sesuai |
-| Menekan tombol `+ Tambah Produk` dan menyimpan produk baru | Pop-up Tambah Produk tampil dan produk baru ditambahkan ke daftar | Sesuai |
-| Menekan tombol `Edit` pada salah satu produk dan menyimpan perubahan | Pop-up Edit Produk tampil dengan data terisi otomatis dan perubahan tersimpan | Sesuai |
-| Menekan tombol `Hapus` pada salah satu produk dan mengonfirmasi penghapusan | Pop-up konfirmasi Hapus Produk tampil dan produk terhapus dari daftar | Sesuai |
+| Membuka halaman `/products` | Daftar 5 produk awal ditampilkan beserta pencarian dan tombol aksi CRUD | Sesuai |
+| Menambah, mengedit, dan menghapus produk pada `/products` | Modal *pop-up* tampil dan perubahan data produk langsung tersimpan | Sesuai |
+| Membuka halaman detail `/products/:id` (contoh: `/products/2`) | Detail produk sesuai ID (`Buku Tulis` - `Rp 12.000`) dan tautan kembali ke `/products` ditampilkan | Sesuai |
+| Mengubah mode tampilan dari halaman `/settings` ke **Tampilan List** | Tata letak daftar produk pada `/products` berubah dari Grid menjadi List | Sesuai |
+| Membuka URL yang tidak dikenal (contoh: `/halaman-tidak-ditemukan`) | Halaman 404 tampil dengan pesan jelas dan tautan kembali ke `/products` | Sesuai |
 
-### Screenshot Bukti Pengujian
-1. **Halaman Utama Daftar Produk**
-   ![Halaman Utama](./screenshots/1-halaman-utama.png)
-2. **Fitur Pencarian Produk**
-   ![Pencarian Produk](./screenshots/2-pencarian-produk.png)
-3. **Form Pop-up Tambah Produk**
-   ![Form Tambah Produk](./screenshots/3-form-tambah-produk.png)
-4. **Hasil Penambahan Produk Baru**
-   ![Hasil Tambah Produk](./screenshots/4-hasil-tambah-produk.png)
-5. **Form Pop-up Edit Produk**
-   ![Form Edit Produk](./screenshots/5-form-edit-produk.png)
-6. **Hasil Perubahan Data Produk**
-   ![Hasil Edit Produk](./screenshots/6-hasil-edit-produk.png)
-7. **Pop-up Konfirmasi Hapus Produk**
-   ![Konfirmasi Hapus Produk](./screenshots/7-konfirmasi-hapus-produk.png)
-8. **Hasil Penghapusan Produk**
-   ![Hasil Hapus Produk](./screenshots/8-hasil-hapus-produk.png)
+### Lampiran Screenshot Pengujian
+1. **Halaman Utama Daftar Produk (Mode Grid)**
+   ![Halaman Produk Grid](./screenshots/1-halaman-produk-grid.png)
+2. **Pop-up Tambah Produk & Hasil Penambahan**
+   ![Modal Tambah Produk](./screenshots/2-modal-tambah-produk.png)
+   ![Hasil Tambah Produk](./screenshots/3-hasil-tambah-produk.png)
+3. **Pop-up Edit Produk**
+   ![Modal Edit Produk](./screenshots/4-modal-edit-produk.png)
+4. **Halaman Detail Produk (`/products/2`)**
+   ![Halaman Detail Produk](./screenshots/5-halaman-detail-produk.png)
+5. **Halaman Settings (`/settings` — Pilihan Grid / List)**
+   ![Halaman Settings](./screenshots/6-halaman-settings.png)
+6. **Halaman Daftar Produk dalam Mode List**
+   ![Halaman Produk List](./screenshots/7-halaman-produk-list.png)
+7. **Halaman 404 Tidak Ditemukan**
+   ![Halaman 404](./screenshots/8-halaman-404.png)
